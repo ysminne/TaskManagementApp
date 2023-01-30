@@ -1,0 +1,14 @@
+package com.example.ict652.interfaces;
+
+public interface RecyclerViewClickListener {
+
+    void onItemClick(int position);
+
+    void onLongItemClick(int position);
+
+    void onEditButtonClick(int position);
+    void onDeleteButtonClick(int position);
+    void onDoneButtonClick(int position);
+
+    void onAddMemberButtonClick(int position);
+}
