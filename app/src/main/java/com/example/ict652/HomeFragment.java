@@ -299,7 +299,8 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
                                 TodoModel todoModel = new TodoModel(
                                         jsonObject.getString("_id"),
                                         jsonObject.getString("title"),
-                                        jsonObject.getString("description")
+                                        jsonObject.getString("description"),
+                                        jsonObject.getJSONArray("member")
                                 );
                                 arrayList.add(todoModel);
                             }
@@ -567,6 +568,11 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
     public void onDoneButtonClick(int position) {
         showFinishedTaskDialog(arrayList.get(position).getId(), position);
         Toast.makeText(getActivity(), "Position "+ position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAddMemberButtonClick(int position) {
+
     }
 
     //@Override
