@@ -245,34 +245,30 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
     }
 
     public void showAddMemberDialog(final String name, final String role) {
-        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+        LayoutInflater inflater = getLayoutInflater();
+        View alertLayout = inflater.inflate(R.layout.custom_dialog_layout_member, null);
+
+        final EditText name_field =alertLayout.findViewById(R.id.name);
+        final EditText role_field = alertLayout.findViewById(R.id.role);
+
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Input Member Detail")
                 .setPositiveButton("Add", null)
                 .setNegativeButton("Cancel", null)
                 .create();
 
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
-            public void onShow(DialogInterface dialogInter) {
-                Button button = ((AlertDialog) alertDialog).getButton(AlertDialog.BUTTON_POSITIVE);
-
-                button.setOnClickListener(new View.OnClickListener() {
+            public void onShow(DialogInterface dialogInterface) {
+                Button positiveBtn = ((AlertDialog)dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String name = title_field.getText().toString();
-                        String description = description_field.getText().toString();
-                        if(!TextUtils.isEmpty(title)) {
-                            addTask(title, description);
-                            alertDialog.dismiss();
-                        } else {
-                            Toast.makeText(getActivity(), "Please enter role...", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(getActivity(),"Positive Button", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
-
-        dialog.show();
 
     }
 
@@ -573,8 +569,8 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
         Toast.makeText(getActivity(), "Position "+ position, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onAddMemberButtonClick(int position) {
-        showAddMemberDialog(arrayList.get(position).getId(), arrayList.get(position),getName(), arrayList.get(position).getRole());
-    }
+    //@Override
+    //public void onAddMemberButtonClick(int position) {
+     //   showAddMemberDialog(arrayList.get(position).getId(), arrayList.get(position),getName(), arrayList.get(position).getRole());
+    //}
 }

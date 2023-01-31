@@ -10,5 +10,5 @@ public interface RecyclerViewClickListener {
     void onDeleteButtonClick(int position);
     void onDoneButtonClick(int position);
 
-    void onAddMemberButtonClick(int position);
+    //void onAddMemberButtonClick(int position);
 }
