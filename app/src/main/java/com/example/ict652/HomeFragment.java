@@ -39,6 +39,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.ict652.Adapters.TodoListAdapter;
 import com.example.ict652.UtilsService.SharedPreferenceClass;
 import com.example.ict652.interfaces.RecyclerViewClickListener;
+import com.example.ict652.model.MemberModel;
 import com.example.ict652.model.TodoModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -244,14 +245,18 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
         alertDialog.show();
     }
 
-    public void showAddMemberDialog(final String name, final String role) {
+    public void showAddMemberDialog(final String id, final int position) {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.custom_dialog_layout_member, null);
 
         final EditText name_field =alertLayout.findViewById(R.id.name);
         final EditText role_field = alertLayout.findViewById(R.id.role);
 
+        //name_field.setText(name);
+       // role_field.setText(role);
+
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setView(alertLayout)
                 .setTitle("Input Member Detail")
                 .setPositiveButton("Add", null)
                 .setNegativeButton("Cancel", null)
@@ -264,11 +269,21 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
                 positiveBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"Positive Button", Toast.LENGTH_SHORT).show();
+
+                        String name = name_field.getText().toString();
+                        String role = role_field.getText().toString();
+
+                        try {
+                            updateMember(id, name, role);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                        dialog.dismiss();
                     }
                 });
             }
         });
+        dialog.show();
 
     }
 
@@ -460,7 +475,7 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
         requestQueue.add(jsonObjectRequest);
     }
     // Update Todo Task Method
-    private  void  updateTask(String id, String title, String description) {
+    private  void  updateTask(final String id, String title, String description) {
         String url = "https://taskmanagementapi-001.herokuapp.com/api/taskmanagement/"+id;
         HashMap<String, String> body = new HashMap<>();
         body.put("title", title);
@@ -541,6 +556,46 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
         requestQueue.add(jsonObjectRequest);
     }
 
+    private void updateMember(String id, String name, String role) throws JSONException {
+        String url = "https://taskmanagementapi-001.herokuapp.com/api/taskmanagement/"+id;
+        HashMap<String , Object> body = new HashMap<>();
+        body.put("member",new MemberModel(name, role).toJSON());
+        //body.put("role", role);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, new JSONObject(body),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if(response.getBoolean("success")) {
+                                getTasks();
+                                Toast.makeText(getActivity(), response.getString("msg"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", token);
+                return params;
+            }
+        };
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonObjectRequest);
+    }
+
     @Override
     public void onItemClick(int position) {
         Toast.makeText(getActivity(), "Position "+ position, Toast.LENGTH_SHORT).show();
@@ -572,6 +627,8 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
 
     @Override
     public void onAddMemberButtonClick(int position) {
+        Toast.makeText(getActivity(),"Member",Toast.LENGTH_SHORT).show();
+        showAddMemberDialog(arrayList.get(position).getId(),position);
 
     }
 

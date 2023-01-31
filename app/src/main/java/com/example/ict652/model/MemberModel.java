@@ -1,5 +1,8 @@
 package com.example.ict652.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MemberModel {
     private String name, role;
 
@@ -15,5 +18,14 @@ public class MemberModel {
 
     public String getRole(){
         return role;
+    }
+
+    public JSONObject toJSON() throws JSONException {
+
+        JSONObject jo = new JSONObject();
+        jo.put("name", this.name);
+        jo.put("role", this.role);
+
+        return jo;
     }
 }

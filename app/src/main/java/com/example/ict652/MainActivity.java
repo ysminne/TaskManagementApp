@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        openChange1 = (Button) findViewById(R.id.change);
-        openEdit1 = (Button) findViewById(R.id.edit);
+       // openChange1 = (Button) findViewById(R.id.change);
+       // openEdit1 = (Button) findViewById(R.id.edit);
 
     }
 
