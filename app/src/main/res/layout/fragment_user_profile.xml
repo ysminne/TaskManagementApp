@@ -57,7 +57,7 @@
             android:layout_marginLeft="5dp"/>
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/username_profile_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="  "
@@ -91,7 +91,7 @@
             android:layout_marginLeft="5dp"/>
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/email_profile_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="  "
@@ -124,7 +124,7 @@
             android:layout_marginLeft="5dp"/>
 
         <TextView
-            android:id="@+id/password"
+            android:id="@+id/password_profile_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="  "
