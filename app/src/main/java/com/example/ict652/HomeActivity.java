@@ -2,6 +2,7 @@ package com.example.ict652;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -48,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
 // set Fragmentclass Arguments
         fragobj = new HomeFragment();
         fragobj.setArguments(bundle);
+//        replaceFragment(fragobj);
 
         toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +72,9 @@ public class HomeActivity extends AppCompatActivity {
                         replaceFragment(new UserProfileFragment());
                         break;
                     case R.id.nav_logout:
-                        replaceFragment(new LogoutFragment());
+                        Intent intent = new Intent (HomeActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                        startActivity(intent);
                         break;
                 }
                 return true;

@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MemberModel {
-    private String name, role;
+    public String name, role;
 
 
     public MemberModel(String name, String role) {

@@ -2,7 +2,9 @@ package com.example.ict652;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -108,6 +110,13 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent (LoginActivity.this, HomeActivity.class);
                         intent.putExtra("token", token);
+                        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email",etEmail.getText().toString());
+                        editor.putString("password",etPasssword.getText().toString());
+                        editor.putString("token",response.getString("token"));
+                        editor.putString("user",response.getString("user"));
+                        editor.commit();
                         startActivity(intent);
                     }
                 } catch (JSONException e) {
