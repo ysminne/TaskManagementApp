@@ -7,15 +7,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class TodoModel {
-    private String id,title,description;
+    private String id,title,description, createdAt;
 
     private MemberModel memberModel;
     private ArrayList<MemberModel> memberModelArrayList;
 
-    public TodoModel(String id, String title, String description, JSONArray memberJson) throws JSONException {
+    public TodoModel(String id, String title, String description, String createdAt, JSONArray memberJson) throws JSONException {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.createdAt = createdAt;
         memberModelArrayList = new ArrayList<>();
         if (memberJson != null) {
             for (int i=0;i<memberJson.length();i++){
@@ -51,5 +52,7 @@ public class TodoModel {
     public String getDescription() {
         return description;
     }
+
+    public String getCreatedAt(){ return createdAt; }
 
 }

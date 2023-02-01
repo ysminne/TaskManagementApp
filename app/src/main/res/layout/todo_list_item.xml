@@ -118,6 +118,27 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp" />
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/showcreatedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/createdAt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="60dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="Date : "
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
     </LinearLayout>
 
 

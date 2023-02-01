@@ -70,6 +70,9 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
         final String id = arrayList.get(position).getId();
         final String name = arrayList.get(position).getMemberModel().getName();
         final String role = arrayList.get(position).getMemberModel().getRole();
+        final String createdAt = arrayList.get(position).getCreatedAt();
+
+        holder.createdAt.setText(createdAt);
 
         holder.titleTv.setText(title);
         if(!description.equals("")) {
@@ -137,7 +140,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CardView accordian_title;
-        TextView titleTv, descriptionTv, name, role;
+        TextView titleTv, descriptionTv, name, role, createdAt;
         RelativeLayout accordian_body;
         ImageView arrow;
         ImageView editBtn;
@@ -159,6 +162,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
             doneBtn = (ImageView) itemView.findViewById(R.id.doneBtn);
             addMember =  itemView.findViewById(R.id.addMember);
             childRecyclerView = itemView.findViewById(R.id.recycler_view_member);
+            createdAt = (TextView) itemView.findViewById(R.id.createdAt);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

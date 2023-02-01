@@ -49,6 +49,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -126,6 +127,7 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
 
         final EditText title_field = alertLayout.findViewById(R.id.title);
         final EditText description_field = alertLayout.findViewById(R.id.description);
+
 
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(alertLayout)
@@ -315,6 +317,7 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
                                         jsonObject.getString("_id"),
                                         jsonObject.getString("title"),
                                         jsonObject.getString("description"),
+                                        jsonObject.getString("createdAt"),
                                         jsonObject.getJSONArray("member")
                                 );
                                 arrayList.add(todoModel);
