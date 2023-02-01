@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    android:background="@drawable/background2">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -43,6 +44,8 @@
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/my_navigation_items"
         android:visibility="visible"/>
+
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

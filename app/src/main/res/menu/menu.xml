@@ -5,7 +5,7 @@
         android:checkableBehavior="single">
 
         <item
-            android:title="Home"
+            android:title="Project"
             android:id="@+id/action_home"/>
         <item
             android:title="User Profile"
