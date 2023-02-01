@@ -85,9 +85,11 @@ public class UserProfileFragment extends Fragment {
         try {
             jsonObject = new JSONObject(user_json_str);
             idVal = jsonObject.getString("_id");
+            username_txtview.setText(jsonObject.getString("username"));
         }catch (JSONException err){
             Log.d("Error", err.toString());
         }
+
         pass_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
