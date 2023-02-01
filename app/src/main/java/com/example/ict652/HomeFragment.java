@@ -1,9 +1,11 @@
 package com.example.ict652;
 
 import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.content.DialogInterface;
@@ -48,6 +50,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -422,12 +425,14 @@ public class HomeFragment extends Fragment implements RecyclerViewClickListener 
         requestQueue.add(jsonObjectRequest);
     }
     // Add Todo Task Method
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addTask(String title, String description) {
         String url = "https://taskmanagementapi-001.herokuapp.com/api/taskmanagement/";
 
         HashMap<String, String> body = new HashMap<>();
         body.put("title", title);
         body.put("description", description);
+        body.put("createdAt", LocalDateTime.now().toString());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 url, new JSONObject(body), new Response.Listener<JSONObject>() {

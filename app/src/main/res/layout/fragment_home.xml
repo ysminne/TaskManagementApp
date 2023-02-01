@@ -32,7 +32,6 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:visibility="gone"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

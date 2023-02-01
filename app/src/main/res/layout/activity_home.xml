@@ -31,7 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/framelayout"
-            android:layout_below="@+id/appbarLayout"/>
+            android:layout_below="@+id/appbarLayout">
+
+
+        </FrameLayout>
 
 
     </RelativeLayout>
@@ -44,8 +47,6 @@
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/my_navigation_items"
         android:visibility="visible"/>
-
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

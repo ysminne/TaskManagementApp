@@ -131,7 +131,8 @@
             android:ems="13"
             android:layout_marginLeft="60dp"
             android:textSize="18dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 
